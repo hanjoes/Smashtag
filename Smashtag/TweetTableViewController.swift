@@ -8,24 +8,23 @@
 
 import UIKit
 
-class TweetTableViewController: UITableViewController {
+class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     var tweets = [[Tweet]]()
+    var searchText: String? = "#USFCA" {
+        didSet {
+            searchTextField?.text = searchText
+            tweets.removeAll()
+            tableView.reloadData()
+            refresh()
+        }
+    }
 
     // MARK: - View Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let request = TwitterRequest(search: "#USFCA", count: 100)
-        request.fetchTweets { (newTweets) -> Void in
-            /// dispatch back to main queue.
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                if newTweets.count > 0 {
-                    self.tweets.insert(newTweets, atIndex: 0)
-                    self.tableView.reloadData()
-                }
-            }
-        }
+        refresh()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -33,7 +32,38 @@ class TweetTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    
+    func refresh() {
+        if searchText != nil {
+            let request = TwitterRequest(search: searchText!, count: 100)
+            request.fetchTweets { (newTweets) -> Void in
+                /// dispatch back to main queue.
+                dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                    if newTweets.count > 0 {
+                        self.tweets.insert(newTweets, atIndex: 0)
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+    }
 
+    @IBOutlet weak var searchTextField: UITextField! {
+        didSet {
+            searchTextField.delegate = self
+            searchTextField.text = searchText
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == searchTextField {
+            // make the keyboard go away
+            textField.resignFirstResponder()
+            searchText = textField.text
+        }
+        return true
+    }
+    
     // MARK: - UITableViewDataDSource
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
