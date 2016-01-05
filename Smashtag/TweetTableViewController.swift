@@ -13,6 +13,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     var tweets = [[Tweet]]()
     var searchText: String? = "#USFCA" {
         didSet {
+            lastSuccessfulRequest = nil
             searchTextField?.text = searchText
             tweets.removeAll()
             tableView.reloadData()
@@ -35,19 +36,46 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
-    func refresh() {
+    var lastSuccessfulRequest: TwitterRequest?
+    var nextRequestToAttempt: TwitterRequest? {
+        if lastSuccessfulRequest == nil {
+            if searchText != nil {
+                return TwitterRequest(search: searchText!, count: 100)
+            }
+            else {
+                return nil
+            }
+        } else {
+            return lastSuccessfulRequest!.requestForNewer
+        }
+    }
+    
+    @IBAction func refresh(sender: UIRefreshControl?) {
         if searchText != nil {
-            let request = TwitterRequest(search: searchText!, count: 100)
-            request.fetchTweets { (newTweets) -> Void in
-                /// dispatch back to main queue.
-                dispatch_async(dispatch_get_main_queue()) { () -> Void in
-                    if newTweets.count > 0 {
-                        self.tweets.insert(newTweets, atIndex: 0)
-                        self.tableView.reloadData()
+            if let request = nextRequestToAttempt {
+                request.fetchTweets { (newTweets) -> Void in
+                    /// dispatch back to main queue.
+                    dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                        if newTweets.count > 0 {
+                            self.lastSuccessfulRequest = request
+                            self.tweets.insert(newTweets, atIndex: 0)
+                            self.tableView.reloadData()
+                            sender?.endRefreshing()
+                        }
                     }
                 }
             }
         }
+        else {
+            sender?.endRefreshing()
+        }
+    }
+    
+    func refresh() {
+        if refreshControl != nil {
+            refreshControl?.beginRefreshing()
+        }
+        refresh(refreshControl)
     }
 
     @IBOutlet weak var searchTextField: UITextField! {
