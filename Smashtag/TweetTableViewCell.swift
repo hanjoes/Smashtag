@@ -32,6 +32,42 @@ class TweetTableViewCell: UITableViewCell {
         if let tweet = self.tweet {
             tweetTextLabel?.text = tweet.text
             if tweetTextLabel?.text != nil {
+                
+                // highlight mentions
+                if let attributedString = tweetTextLabel?.attributedText {
+                    let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
+                    for url in tweet.urls {
+                        if let nsrange = url.nsrange {
+                            mutableAttributedString.addAttribute(NSForegroundColorAttributeName,
+                                value: UIColor.blueColor(),
+                                range: nsrange)
+                            mutableAttributedString.addAttribute(NSUnderlineStyleAttributeName,
+                                value: NSUnderlineStyle.StyleSingle.rawValue,
+                                range: nsrange)
+                            tweetTextLabel.attributedText = mutableAttributedString
+                        }
+                    }
+                    for hash in tweet.hashtags {
+                        if let nsrange = hash.nsrange {
+                            mutableAttributedString.addAttribute(NSForegroundColorAttributeName,
+                                value: UIColor.blueColor(),
+                                range: nsrange)
+                            mutableAttributedString.addAttribute(NSFontAttributeName,
+                                value: UIFont.boldSystemFontOfSize(15),
+                                range: nsrange)
+                            tweetTextLabel.attributedText = mutableAttributedString
+                        }
+                    }
+                    for mention in tweet.userMentions {
+                        if let nsrange = mention.nsrange {
+                            mutableAttributedString.addAttribute(NSForegroundColorAttributeName,
+                                value: UIColor.blueColor(),
+                                range: nsrange)
+                            tweetTextLabel.attributedText = mutableAttributedString
+                        }
+                    }
+                }
+                
                 for _ in tweet.media {
                     tweetTextLabel.text! += " 📷"
                 }
@@ -56,5 +92,4 @@ class TweetTableViewCell: UITableViewCell {
 //            tweetCreatedLabel?.text = formatter.stringFromDate(tweet.created)
         }
     }
-
 }
