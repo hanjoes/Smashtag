@@ -106,6 +106,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 
     private struct Storyboard {
         static let CellReuseIdentifier = "Tweet"
+        static let ShowSegue = "Show"
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -116,12 +117,8 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         return cell
     }
     
-    private struct Constants {
-        static let ShowSegue = "Show"
-    }
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier(Constants.ShowSegue, sender: self.tableView(tableView, cellForRowAtIndexPath: indexPath))
+        performSegueWithIdentifier(Storyboard.ShowSegue, sender: self.tableView(tableView, cellForRowAtIndexPath: indexPath))
     }
 
     /*
@@ -173,6 +170,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         if let dtc = destination as? DetailTableViewController {
             if let cell = sender as? TweetTableViewCell {
                 dtc.tweet = cell.tweet
+                dtc.title = "Tweet"
             }
         }
     }

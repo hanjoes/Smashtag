@@ -92,17 +92,49 @@
         <scene sceneID="gu0-N7-2bU">
             <objects>
                 <tableViewController id="upd-U6-u8m" customClass="DetailTableViewController" customModule="Smashtag" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dXZ-TI-cLC">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="111" sectionHeaderHeight="28" sectionFooterHeight="28" id="dXZ-TI-cLC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="XoZ-R3-Rmc">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Media" rowHeight="133" id="XoZ-R3-Rmc">
+                                <rect key="frame" x="0.0" y="92" width="600" height="133"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XoZ-R3-Rmc" id="BYA-kl-e2e">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="132"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SmB-fd-XBC">
+                                            <rect key="frame" x="8" y="0.0" width="584" height="132"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="SmB-fd-XBC" secondAttribute="bottom" id="0RW-Jm-ogu"/>
+                                        <constraint firstItem="SmB-fd-XBC" firstAttribute="leading" secondItem="BYA-kl-e2e" secondAttribute="leadingMargin" id="F9h-ds-2XL"/>
+                                        <constraint firstItem="SmB-fd-XBC" firstAttribute="top" secondItem="BYA-kl-e2e" secondAttribute="top" id="ZAE-Z6-lun"/>
+                                        <constraint firstItem="SmB-fd-XBC" firstAttribute="trailing" secondItem="BYA-kl-e2e" secondAttribute="trailingMargin" id="qJN-YK-9y7"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Info" rowHeight="122" id="psp-Zl-X5G">
+                                <rect key="frame" x="0.0" y="225" width="600" height="122"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="psp-Zl-X5G" id="KSM-ur-G9G">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="121"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbi-yO-HRQ">
+                                            <rect key="frame" x="8" y="50" width="584" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="bbi-yO-HRQ" firstAttribute="leading" secondItem="KSM-ur-G9G" secondAttribute="leadingMargin" id="EAv-FT-MZg"/>
+                                        <constraint firstItem="bbi-yO-HRQ" firstAttribute="centerY" secondItem="KSM-ur-G9G" secondAttribute="centerY" id="MUJ-za-uoh"/>
+                                        <constraint firstItem="bbi-yO-HRQ" firstAttribute="trailing" secondItem="KSM-ur-G9G" secondAttribute="trailingMargin" id="lC0-65-bDn"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>

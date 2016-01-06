@@ -9,13 +9,69 @@
 import UIKit
 
 class DetailTableViewController: UITableViewController {
+    
+    private struct Detail {
+        static let MediaReuseIdentifier = "Media"
+        static let InfoReuseIdentifier = "Info"
+    }
+    
+    private enum TweetDetail {
+        case Media(title: String, images: MediaItem)
+        case URLMention(title: String, url: Tweet.IndexedKeyword)
+        case UserMention(title: String, user: Tweet.IndexedKeyword)
+        case HashTag(title: String, hashTag: Tweet.IndexedKeyword)
+        
+        func description() -> String {
+            switch self {
+            case .Media(let title, _):
+                return title
+            case .URLMention(let title, _):
+                return title
+            case .UserMention(let title, _):
+                return title
+            case .HashTag(let title, _):
+                return title
+            }
+        }
+        
+        func identifier() -> String {
+            switch self {
+            case .Media(_, _):
+                return Detail.MediaReuseIdentifier
+            case .URLMention(_, _):
+                return Detail.InfoReuseIdentifier
+            case .UserMention(_, _):
+                return Detail.InfoReuseIdentifier
+            case .HashTag(_, _):
+                return Detail.InfoReuseIdentifier
+            }
+        }
+    }
 
     // MARK: - Model
     var tweet: Tweet? {
         didSet {
             if tweet != nil {
-                print("model has been set.")
+                initializeDetails(tweet!)
+                tableView.reloadData()
             }
+        }
+    }
+    
+    private var details = [[TweetDetail]]()
+    
+    private func initializeDetails(tweet: Tweet) {
+        if tweet.media.count > 0 {
+            details.append(tweet.media.map{ .Media(title: "Media", images: $0) })
+        }
+        if tweet.urls.count > 0 {
+            details.append(tweet.urls.map{ .URLMention(title: "URLs", url: $0) })
+        }
+        if tweet.userMentions.count > 0 {
+            details.append(tweet.userMentions.map{ .UserMention(title: "Mentioned Users", user: $0) })
+        }
+        if tweet.hashtags.count > 0 {
+            details.append(tweet.hashtags.map{ .HashTag(title: "Hashtags", hashTag: $0) })
         }
     }
     
@@ -29,32 +85,29 @@ class DetailTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        print("section num: \(details.count)")
+        return details.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        print("row num for section \(section): \(details[section].count)")
+        return details[section].count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let detail = details[indexPath.section][indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(detail.identifier(), forIndexPath: indexPath)
 
         // Configure the cell...
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
