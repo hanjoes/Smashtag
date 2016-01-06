@@ -107,12 +107,21 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     private struct Storyboard {
         static let CellReuseIdentifier = "Tweet"
     }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.CellReuseIdentifier, forIndexPath: indexPath) as! TweetTableViewCell
 
         cell.tweet = tweets[indexPath.section][indexPath.row]
         
         return cell
+    }
+    
+    private struct Constants {
+        static let ShowSegue = "Show"
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier(Constants.ShowSegue, sender: self.tableView(tableView, cellForRowAtIndexPath: indexPath))
     }
 
     /*
@@ -148,15 +157,24 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         return true
     }
     */
+    
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        var destination = segue.destinationViewController
+        if let navCon = destination as? UINavigationController {
+            destination = navCon.visibleViewController!
+        }
+        
+        if let dtc = destination as? DetailTableViewController {
+            if let cell = sender as? TweetTableViewCell {
+                dtc.tweet = cell.tweet
+            }
+        }
     }
-    */
 
 }

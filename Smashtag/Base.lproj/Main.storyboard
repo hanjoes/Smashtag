@@ -9,7 +9,7 @@
         <!--Tweet Table View Controller-->
         <scene sceneID="p34-0m-xtv">
             <objects>
-                <tableViewController id="Tjz-Fq-Jmb" customClass="TweetTableViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Tjz-Fq-Jmb" customClass="TweetTableViewController" customModule="Smashtag" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="187" sectionHeaderHeight="28" sectionFooterHeight="28" id="YK2-JM-RQe">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -81,11 +81,41 @@
                     </refreshControl>
                     <connections>
                         <outlet property="searchTextField" destination="kc9-s5-V39" id="ifV-fj-ZxP"/>
+                        <segue destination="upd-U6-u8m" kind="show" identifier="Show" id="RPp-Q4-T90"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bdr-TG-UL1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="993" y="372"/>
+        </scene>
+        <!--Detail Table View Controller-->
+        <scene sceneID="gu0-N7-2bU">
+            <objects>
+                <tableViewController id="upd-U6-u8m" customClass="DetailTableViewController" customModule="Smashtag" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dXZ-TI-cLC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="XoZ-R3-Rmc">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XoZ-R3-Rmc" id="BYA-kl-e2e">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="upd-U6-u8m" id="xS2-iT-Uoa"/>
+                            <outlet property="delegate" destination="upd-U6-u8m" id="VEd-8x-HeT"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="GNP-EG-vOU"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cXE-BS-1lk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1770" y="372"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Xfr-Qt-hQn">
