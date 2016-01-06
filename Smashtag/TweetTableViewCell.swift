@@ -53,7 +53,7 @@ class TweetTableViewCell: UITableViewCell {
                                 value: UIColor.blueColor(),
                                 range: nsrange)
                             mutableAttributedString.addAttribute(NSFontAttributeName,
-                                value: UIFont.boldSystemFontOfSize(15),
+                                value: UIFont.boldSystemFontOfSize(tweetTextLabel.font.pointSize),
                                 range: nsrange)
                             tweetTextLabel.attributedText = mutableAttributedString
                         }
