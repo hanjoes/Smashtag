@@ -34,39 +34,35 @@ class TweetTableViewCell: UITableViewCell {
             if tweetTextLabel?.text != nil {
                 
                 // highlight mentions
-                if let attributedString = tweetTextLabel?.attributedText {
-                    let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
-                    for url in tweet.urls {
-                        if let nsrange = url.nsrange {
-                            mutableAttributedString.addAttribute(NSForegroundColorAttributeName,
-                                value: UIColor.blueColor(),
-                                range: nsrange)
-                            mutableAttributedString.addAttribute(NSUnderlineStyleAttributeName,
-                                value: NSUnderlineStyle.StyleSingle.rawValue,
-                                range: nsrange)
-                            tweetTextLabel.attributedText = mutableAttributedString
-                        }
-                    }
-                    for hash in tweet.hashtags {
-                        if let nsrange = hash.nsrange {
-                            mutableAttributedString.addAttribute(NSForegroundColorAttributeName,
-                                value: UIColor.blueColor(),
-                                range: nsrange)
-                            mutableAttributedString.addAttribute(NSFontAttributeName,
-                                value: UIFont.boldSystemFontOfSize(tweetTextLabel.font.pointSize),
-                                range: nsrange)
-                            tweetTextLabel.attributedText = mutableAttributedString
-                        }
-                    }
-                    for mention in tweet.userMentions {
-                        if let nsrange = mention.nsrange {
-                            mutableAttributedString.addAttribute(NSForegroundColorAttributeName,
-                                value: UIColor.blueColor(),
-                                range: nsrange)
-                            tweetTextLabel.attributedText = mutableAttributedString
-                        }
+                let mutableAttributedString = NSMutableAttributedString(string: tweetTextLabel.text!)
+                for url in tweet.urls {
+                    if let nsrange = url.nsrange {
+                        mutableAttributedString.addAttribute(NSForegroundColorAttributeName,
+                            value: UIColor.blueColor(),
+                            range: nsrange)
+                        mutableAttributedString.addAttribute(NSUnderlineStyleAttributeName,
+                            value: NSUnderlineStyle.StyleSingle.rawValue,
+                            range: nsrange)
                     }
                 }
+                for hash in tweet.hashtags {
+                    if let nsrange = hash.nsrange {
+                        mutableAttributedString.addAttribute(NSForegroundColorAttributeName,
+                            value: UIColor.blueColor(),
+                            range: nsrange)
+                        mutableAttributedString.addAttribute(NSFontAttributeName,
+                            value: UIFont.boldSystemFontOfSize(tweetTextLabel.font.pointSize),
+                            range: nsrange)
+                    }
+                }
+                for mention in tweet.userMentions {
+                    if let nsrange = mention.nsrange {
+                        mutableAttributedString.addAttribute(NSForegroundColorAttributeName,
+                            value: UIColor.blueColor(),
+                            range: nsrange)
+                    }
+                }
+                tweetTextLabel.attributedText = mutableAttributedString
                 
                 for _ in tweet.media {
                     tweetTextLabel.text! += " 📷"
