@@ -60,8 +60,8 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
                             self.lastSuccessfulRequest = request
                             self.tweets.insert(newTweets, atIndex: 0)
                             self.tableView.reloadData()
-                            sender?.endRefreshing()
                         }
+                        sender?.endRefreshing()
                     }
                 }
             }
