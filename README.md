@@ -1,4 +1,4 @@
 # Smashtag
-* Toy Swift project to test out things.
+* Toy Swift project coming from Stanford CS193P.
 * A good place to test out TableViewController.
 * It pulls tweets using Twitter's openAPI and display it properly.
