@@ -17,6 +17,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             searchTextField?.text = searchText
             tweets.removeAll()
             tableView.reloadData()
+            refresh()
         }
     }
 
@@ -174,4 +175,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
 
+    @IBAction func goBack(segue: UIStoryboardSegue) {
+        refresh()
+    }
 }
