@@ -120,6 +120,9 @@ class DetailTableViewController: UITableViewController {
         if let infoCell = cell as? InfoTableViewCell {
             infoCell.info = detail.detail
         }
+        else if let imageCell = cell as? ImageTableViewCell {
+            imageCell.urlStr = detail.detail
+        }
 
         return cell
     }
