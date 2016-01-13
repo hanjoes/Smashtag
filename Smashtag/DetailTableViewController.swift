@@ -117,7 +117,9 @@ class DetailTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(detail.identifier, forIndexPath: indexPath)
 
         // Configure the cell...
-        print(detail.detail)
+        if let infoCell = cell as? InfoTableViewCell {
+            infoCell.info = detail.detail
+        }
 
         return cell
     }

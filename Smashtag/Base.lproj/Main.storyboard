@@ -116,7 +116,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Info" rowHeight="122" id="psp-Zl-X5G">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Info" rowHeight="122" id="psp-Zl-X5G" customClass="InfoTableViewCell" customModule="Smashtag" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="225" width="600" height="122"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="psp-Zl-X5G" id="KSM-ur-G9G">
@@ -136,6 +136,9 @@
                                         <constraint firstItem="bbi-yO-HRQ" firstAttribute="trailing" secondItem="KSM-ur-G9G" secondAttribute="trailingMargin" id="lC0-65-bDn"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="infoLabel" destination="bbi-yO-HRQ" id="nWa-z7-84V"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
