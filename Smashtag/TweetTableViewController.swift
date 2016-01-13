@@ -17,7 +17,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             searchTextField?.text = searchText
             tweets.removeAll()
             tableView.reloadData()
-            refresh()
         }
     }
 
