@@ -12,7 +12,7 @@ class DetailTableViewController: UITableViewController {
     
     private struct Detail {
         static let MediaReuseIdentifier = "Media"
-        static let InfoReuseIdentifier = "Info"
+        static let MentionReuseIdentifier = "Mention"
     }
     
     private enum TweetDetail {
@@ -52,11 +52,11 @@ class DetailTableViewController: UITableViewController {
             case .Media(_):
                 return Detail.MediaReuseIdentifier
             case .URLMention(_):
-                return Detail.InfoReuseIdentifier
+                return Detail.MentionReuseIdentifier
             case .UserMention(_):
-                return Detail.InfoReuseIdentifier
+                return Detail.MentionReuseIdentifier
             case .HashTag(_):
-                return Detail.InfoReuseIdentifier
+                return Detail.MentionReuseIdentifier
             }
         }
     }
@@ -117,7 +117,7 @@ class DetailTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(detail.identifier, forIndexPath: indexPath)
 
         // Configure the cell...
-        if let infoCell = cell as? InfoTableViewCell {
+        if let infoCell = cell as? MentionTableViewCell {
             infoCell.info = detail.detail
         }
         else if let imageCell = cell as? ImageTableViewCell {
@@ -171,7 +171,7 @@ class DetailTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destination = segue.destinationViewController as? TweetTableViewController {
-            if let cell = sender as? InfoTableViewCell {
+            if let cell = sender as? MentionTableViewCell {
                 destination.searchText = cell.info
             }
         }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DB03D4841C461EDE000389D1 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB03D4831C461EDE000389D1 /* InfoTableViewCell.swift */; };
+		DB03D4841C461EDE000389D1 /* MentionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB03D4831C461EDE000389D1 /* MentionTableViewCell.swift */; };
 		DB03D4861C461FEB000389D1 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB03D4851C461FEB000389D1 /* ImageTableViewCell.swift */; };
 		DBDAE23D1C3B74C50097BEB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDAE23C1C3B74C50097BEB7 /* AppDelegate.swift */; };
 		DBDAE2421C3B74C50097BEB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBDAE2401C3B74C50097BEB7 /* Main.storyboard */; };
@@ -42,7 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DB03D4831C461EDE000389D1 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		DB03D4831C461EDE000389D1 /* MentionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionTableViewCell.swift; sourceTree = "<group>"; };
 		DB03D4851C461FEB000389D1 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
 		DBDAE2391C3B74C50097BEB7 /* Smashtag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smashtag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBDAE23C1C3B74C50097BEB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 				DBDAE26B1C3B756B0097BEB7 /* TweetTableViewController.swift */,
 				DBDAE2761C3B86090097BEB7 /* TweetTableViewCell.swift */,
 				DBFAEF111C3D3CF800CEC25C /* DetailTableViewController.swift */,
-				DB03D4831C461EDE000389D1 /* InfoTableViewCell.swift */,
+				DB03D4831C461EDE000389D1 /* MentionTableViewCell.swift */,
 				DB03D4851C461FEB000389D1 /* ImageTableViewCell.swift */,
 			);
 			path = Smashtag;
@@ -302,7 +302,7 @@
 				DBDAE23D1C3B74C50097BEB7 /* AppDelegate.swift in Sources */,
 				DBDAE2741C3B76050097BEB7 /* TwitterRequest.swift in Sources */,
 				DBDAE2751C3B76050097BEB7 /* User.swift in Sources */,
-				DB03D4841C461EDE000389D1 /* InfoTableViewCell.swift in Sources */,
+				DB03D4841C461EDE000389D1 /* MentionTableViewCell.swift in Sources */,
 				DBDAE26C1C3B756B0097BEB7 /* TweetTableViewController.swift in Sources */,
 				DBFAEF121C3D3CF800CEC25C /* DetailTableViewController.swift in Sources */,
 				DBDAE2721C3B76050097BEB7 /* MediaItem.swift in Sources */,

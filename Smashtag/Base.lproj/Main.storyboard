@@ -119,7 +119,7 @@
                                     <outlet property="mediaImage" destination="SmB-fd-XBC" id="8Tu-87-zy7"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Info" rowHeight="122" id="psp-Zl-X5G" customClass="InfoTableViewCell" customModule="Smashtag" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Mention" rowHeight="122" id="psp-Zl-X5G" customClass="MentionTableViewCell" customModule="Smashtag" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="225" width="600" height="122"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="psp-Zl-X5G" id="KSM-ur-G9G">

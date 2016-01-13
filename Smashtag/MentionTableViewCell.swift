@@ -1,5 +1,5 @@
 //
-//  InfoTableViewCell.swift
+//  MentionTableViewCell.swift
 //  Smashtag
 //
 //  Created by Hanzhou Shi on 1/13/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InfoTableViewCell: UITableViewCell {
+class MentionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var infoLabel: UILabel!
     
