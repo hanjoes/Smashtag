@@ -16,33 +16,33 @@ class DetailTableViewController: UITableViewController {
     }
     
     private enum TweetDetail {
-        case Media(title: String, images: MediaItem)
-        case URLMention(title: String, url: Tweet.IndexedKeyword)
-        case UserMention(title: String, user: Tweet.IndexedKeyword)
-        case HashTag(title: String, hashTag: Tweet.IndexedKeyword)
+        case Media(images: MediaItem)
+        case URLMention(url: Tweet.IndexedKeyword)
+        case UserMention(user: Tweet.IndexedKeyword)
+        case HashTag(hashTag: Tweet.IndexedKeyword)
         
         func description() -> String {
             switch self {
-            case .Media(let title, _):
-                return title
-            case .URLMention(let title, _):
-                return title
-            case .UserMention(let title, _):
-                return title
-            case .HashTag(let title, _):
-                return title
+            case .Media(_):
+                return "Media"
+            case .URLMention(_):
+                return "URLs"
+            case .UserMention(_):
+                return "Users"
+            case .HashTag(_):
+                return "Hash Tags"
             }
         }
         
         func identifier() -> String {
             switch self {
-            case .Media(_, _):
+            case .Media(_):
                 return Detail.MediaReuseIdentifier
-            case .URLMention(_, _):
+            case .URLMention(_):
                 return Detail.InfoReuseIdentifier
-            case .UserMention(_, _):
+            case .UserMention(_):
                 return Detail.InfoReuseIdentifier
-            case .HashTag(_, _):
+            case .HashTag(_):
                 return Detail.InfoReuseIdentifier
             }
         }
@@ -62,16 +62,16 @@ class DetailTableViewController: UITableViewController {
     
     private func initializeDetails(tweet: Tweet) {
         if tweet.media.count > 0 {
-            details.append(tweet.media.map{ .Media(title: "Media", images: $0) })
+            details.append(tweet.media.map{ .Media(images: $0) })
         }
         if tweet.urls.count > 0 {
-            details.append(tweet.urls.map{ .URLMention(title: "URLs", url: $0) })
+            details.append(tweet.urls.map{ .URLMention(url: $0) })
         }
         if tweet.userMentions.count > 0 {
-            details.append(tweet.userMentions.map{ .UserMention(title: "Mentioned Users", user: $0) })
+            details.append(tweet.userMentions.map{ .UserMention(user: $0) })
         }
         if tweet.hashtags.count > 0 {
-            details.append(tweet.hashtags.map{ .HashTag(title: "Hashtags", hashTag: $0) })
+            details.append(tweet.hashtags.map{ .HashTag(hashTag: $0) })
         }
     }
     
@@ -89,13 +89,11 @@ class DetailTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        print("section num: \(details.count)")
         return details.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print("row num for section \(section): \(details[section].count)")
         return details[section].count
     }
 
@@ -107,6 +105,10 @@ class DetailTableViewController: UITableViewController {
         // Configure the cell...
 
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return details[section][0].description()
     }
 
     /*
