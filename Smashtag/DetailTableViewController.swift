@@ -34,6 +34,19 @@ class DetailTableViewController: UITableViewController {
             }
         }
         
+        var detail: String {
+            switch self {
+            case .Media(let image):
+                return image.url.description
+            case .URLMention(let url):
+                return url.keyword
+            case .UserMention(let user):
+                return user.keyword
+            case .HashTag(let hashTag):
+                return hashTag.keyword
+            }
+        }
+        
         var identifier: String {
             switch self {
             case .Media(_):
@@ -104,6 +117,7 @@ class DetailTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(detail.identifier, forIndexPath: indexPath)
 
         // Configure the cell...
+        print(detail.detail)
 
         return cell
     }
