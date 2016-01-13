@@ -21,7 +21,6 @@ class ImageTableViewCell: UITableViewCell {
     
     private func updateUI() {
         if let urlStr = self.urlStr {
-            print(urlStr)
             if let url = NSURL(string: urlStr) {
                 if let imageData = NSData(contentsOfURL: url) {
                     mediaImage?.image = UIImage(data: imageData)

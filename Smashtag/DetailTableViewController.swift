@@ -112,6 +112,14 @@ class DetailTableViewController: UITableViewController {
         return details[section].count
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = self.tableView(self.tableView, cellForRowAtIndexPath: indexPath)
+        if let urlCell = cell as? URLTableViewCell {
+            if let url = NSURL(string: urlCell.urlStr!) {
+                UIApplication.sharedApplication().openURL(url)
+            }
+        }
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let detail = details[indexPath.section][indexPath.row]
