@@ -12,15 +12,15 @@ class MentionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var infoLabel: UILabel!
     
-    var info: String? {
+    var detail: TweetDetail? {
         didSet {
             updateUI()
         }
     }
     
     private func updateUI() {
-        if let info = self.info {
-            infoLabel.text = info
+        if let keyword = detail?.detail.keyword {
+            infoLabel.text = keyword
         }
     }
 }

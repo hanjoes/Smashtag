@@ -13,19 +13,15 @@ class ImageTableViewCell: UITableViewCell {
     @IBOutlet weak var mediaImage: UIImageView!
     
 
-    var urlStr: String? {
+    var imageItem: MediaItem? {
         didSet {
             updateUI()
         }
     }
     
     private func updateUI() {
-        if let urlStr = self.urlStr {
-            if let url = NSURL(string: urlStr) {
-                if let imageData = NSData(contentsOfURL: url) {
-                    mediaImage?.image = UIImage(data: imageData)
-                }
-            }
+        if let imageData = NSData(contentsOfURL: (imageItem?.url)!) {
+            mediaImage?.image = UIImage(data: imageData)
         }
     }
 }

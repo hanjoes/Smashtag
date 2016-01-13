@@ -9,32 +9,6 @@
 import UIKit
 
 class DetailTableViewController: UITableViewController {
-    
-    private struct Detail {
-        static let MediaReuseIdentifier = "Media"
-        static let MentionReuseIdentifier = "Mention"
-        static let URLReuseIdentifier = "URL"
-    }
-    
-    private enum TweetDetail {
-        case Media(image: MediaItem)
-        case URLMention(url: Tweet.IndexedKeyword)
-        case UserMention(user: Tweet.IndexedKeyword)
-        case HashTag(hashTag: Tweet.IndexedKeyword)
-        
-        var detail: (desc: String, content: String, identifier: String) {
-            switch self {
-            case .Media(let image):
-                return ("Media", image.url.description, Detail.MediaReuseIdentifier)
-            case .URLMention(let url):
-                return ("URLs", url.keyword, Detail.URLReuseIdentifier)
-            case .UserMention(let user):
-                return ("Users", user.keyword, Detail.MentionReuseIdentifier)
-            case .HashTag(let hashTag):
-                return ("Hash Tags", hashTag.keyword, Detail.MentionReuseIdentifier)
-            }
-        }
-    }
 
     // MARK: - Model
     var tweet: Tweet? {
@@ -49,17 +23,22 @@ class DetailTableViewController: UITableViewController {
     private var details = [[TweetDetail]]()
     
     private func initializeDetails(tweet: Tweet) {
+        //// DO SOMETHING HERE!!!! FOR THE TYPE after each append!!!
         if tweet.media.count > 0 {
             details.append(tweet.media.map{ .Media(image: $0) })
+            titleBySectionIndex[details.count-1] = "Media"
         }
         if tweet.urls.count > 0 {
             details.append(tweet.urls.map{ .URLMention(url: $0) })
+            titleBySectionIndex[details.count-1] = "URLs"
         }
         if tweet.userMentions.count > 0 {
             details.append(tweet.userMentions.map{ .UserMention(user: $0) })
+            titleBySectionIndex[details.count-1] = "Users"
         }
         if tweet.hashtags.count > 0 {
             details.append(tweet.hashtags.map{ .HashTag(hashTag: $0) })
+            titleBySectionIndex[details.count-1] = "Hash Tag"
         }
     }
     
@@ -88,8 +67,8 @@ class DetailTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = self.tableView(self.tableView, cellForRowAtIndexPath: indexPath)
-        if let urlCell = cell as? URLTableViewCell {
-            if let url = NSURL(string: urlCell.urlStr!) {
+        if let urlCell = cell as? MentionTableViewCell {
+            if let url = urlCell.detail!.url {
                 UIApplication.sharedApplication().openURL(url)
             }
         }
@@ -100,21 +79,18 @@ class DetailTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(detail.detail.identifier, forIndexPath: indexPath)
 
         // Configure the cell...
-        if let infoCell = cell as? MentionTableViewCell {
-            infoCell.info = detail.detail.content
+        if let mentionCell = cell as? MentionTableViewCell {
+            mentionCell.detail = detail
         }
         else if let imageCell = cell as? ImageTableViewCell {
-            imageCell.urlStr = detail.detail.content
-        }
-        else if let urlCell = cell as? URLTableViewCell {
-            urlCell.urlStr = detail.detail.content
+            imageCell.imageItem = detail.imageItem
         }
 
         return cell
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return details[section][0].detail.desc
+        return titleBySectionIndex[section]
     }
 
     /*
@@ -158,9 +134,63 @@ class DetailTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destination = segue.destinationViewController as? TweetTableViewController {
             if let cell = sender as? MentionTableViewCell {
-                destination.searchText = cell.info
+                guard cell.detail!.url == nil else { return }
+                destination.searchText = cell.detail!.detail.keyword
             }
         }
     }
+    
+    
+    // MARK: - Private
+    
+    
+    private var titleBySectionIndex = [Int:String]()
+}
 
+private struct TableViewControllerConstants {
+    static let MediaReuseIdentifier = "Media"
+    static let MentionReuseIdentifier = "Mention"
+}
+
+
+enum TweetDetail {
+    case Media(image: MediaItem)
+    case URLMention(url: Tweet.IndexedKeyword)
+    case UserMention(user: Tweet.IndexedKeyword)
+    case HashTag(hashTag: Tweet.IndexedKeyword)
+    
+    var height: CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    var imageItem: MediaItem? {
+        switch self {
+        case .Media(let image):
+            return image
+        default:
+            return nil
+        }
+    }
+    
+    var url: NSURL? {
+        switch self {
+        case .URLMention(let urlKeyword):
+            return NSURL(string: urlKeyword.keyword)
+        default:
+            return nil
+        }
+    }
+    
+    var detail: (keyword: String?, identifier: String) {
+        switch self {
+        case .Media(_):
+            return (nil, TableViewControllerConstants.MediaReuseIdentifier)
+        case .URLMention(let url):
+            return (url.keyword, TableViewControllerConstants.MentionReuseIdentifier)
+        case .UserMention(let user):
+            return (user.keyword, TableViewControllerConstants.MentionReuseIdentifier)
+        case .HashTag(let hashTag):
+            return (hashTag.keyword, TableViewControllerConstants.MentionReuseIdentifier)
+        }
+    }
 }
