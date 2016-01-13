@@ -44,8 +44,6 @@ class DetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.estimatedRowHeight = tableView.rowHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -87,6 +85,16 @@ class DetailTableViewController: UITableViewController {
         }
 
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let detail = details[indexPath.section][indexPath.row]
+        switch detail {
+        case .Media(let image):
+            return view.frame.width / CGFloat(image.aspectRatio)
+        default:
+            return UITableViewAutomaticDimension
+        }
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
