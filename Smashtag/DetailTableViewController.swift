@@ -21,7 +21,7 @@ class DetailTableViewController: UITableViewController {
         case UserMention(user: Tweet.IndexedKeyword)
         case HashTag(hashTag: Tweet.IndexedKeyword)
         
-        func description() -> String {
+        var description: String {
             switch self {
             case .Media(_):
                 return "Media"
@@ -34,7 +34,7 @@ class DetailTableViewController: UITableViewController {
             }
         }
         
-        func identifier() -> String {
+        var identifier: String {
             switch self {
             case .Media(_):
                 return Detail.MediaReuseIdentifier
@@ -100,7 +100,7 @@ class DetailTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let detail = details[indexPath.section][indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier(detail.identifier(), forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(detail.identifier, forIndexPath: indexPath)
 
         // Configure the cell...
 
@@ -108,7 +108,7 @@ class DetailTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return details[section][0].description()
+        return details[section][0].description
     }
 
     /*
