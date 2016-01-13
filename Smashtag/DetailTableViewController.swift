@@ -16,7 +16,7 @@ class DetailTableViewController: UITableViewController {
     }
     
     private enum TweetDetail {
-        case Media(images: MediaItem)
+        case Media(image: MediaItem)
         case URLMention(url: Tweet.IndexedKeyword)
         case UserMention(user: Tweet.IndexedKeyword)
         case HashTag(hashTag: Tweet.IndexedKeyword)
@@ -75,7 +75,7 @@ class DetailTableViewController: UITableViewController {
     
     private func initializeDetails(tweet: Tweet) {
         if tweet.media.count > 0 {
-            details.append(tweet.media.map{ .Media(images: $0) })
+            details.append(tweet.media.map{ .Media(image: $0) })
         }
         if tweet.urls.count > 0 {
             details.append(tweet.urls.map{ .URLMention(url: $0) })
