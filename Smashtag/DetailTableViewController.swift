@@ -22,42 +22,16 @@ class DetailTableViewController: UITableViewController {
         case UserMention(user: Tweet.IndexedKeyword)
         case HashTag(hashTag: Tweet.IndexedKeyword)
         
-        var description: String {
-            switch self {
-            case .Media(_):
-                return "Media"
-            case .URLMention(_):
-                return "URLs"
-            case .UserMention(_):
-                return "Users"
-            case .HashTag(_):
-                return "Hash Tags"
-            }
-        }
-        
-        var detail: String {
+        var detail: (desc: String, content: String, identifier: String) {
             switch self {
             case .Media(let image):
-                return image.url.description
+                return ("Media", image.url.description, Detail.MediaReuseIdentifier)
             case .URLMention(let url):
-                return url.keyword
+                return ("URLs", url.keyword, Detail.URLReuseIdentifier)
             case .UserMention(let user):
-                return user.keyword
+                return ("Users", user.keyword, Detail.MentionReuseIdentifier)
             case .HashTag(let hashTag):
-                return hashTag.keyword
-            }
-        }
-        
-        var identifier: String {
-            switch self {
-            case .Media(_):
-                return Detail.MediaReuseIdentifier
-            case .URLMention(_):
-                return Detail.URLReuseIdentifier
-            case .UserMention(_):
-                return Detail.MentionReuseIdentifier
-            case .HashTag(_):
-                return Detail.MentionReuseIdentifier
+                return ("Hash Tags", hashTag.keyword, Detail.MentionReuseIdentifier)
             }
         }
     }
@@ -123,24 +97,24 @@ class DetailTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let detail = details[indexPath.section][indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier(detail.identifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(detail.detail.identifier, forIndexPath: indexPath)
 
         // Configure the cell...
         if let infoCell = cell as? MentionTableViewCell {
-            infoCell.info = detail.detail
+            infoCell.info = detail.detail.content
         }
         else if let imageCell = cell as? ImageTableViewCell {
-            imageCell.urlStr = detail.detail
+            imageCell.urlStr = detail.detail.content
         }
         else if let urlCell = cell as? URLTableViewCell {
-            urlCell.urlStr = detail.detail
+            urlCell.urlStr = detail.detail.content
         }
 
         return cell
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return details[section][0].description
+        return details[section][0].detail.desc
     }
 
     /*
