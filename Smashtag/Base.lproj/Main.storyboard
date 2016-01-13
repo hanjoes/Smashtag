@@ -144,6 +144,30 @@
                                     <segue destination="1RT-pk-A6r" kind="unwind" unwindAction="goBack:" id="Rjq-3Z-QuH"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="URL" rowHeight="122" id="fey-c4-KCk" customClass="URLTableViewCell" customModule="Smashtag" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="347" width="600" height="122"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fey-c4-KCk" id="1Yq-7r-cLD">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="121"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9A-os-CyZ">
+                                            <rect key="frame" x="8" y="50" width="584" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="h9A-os-CyZ" firstAttribute="trailing" secondItem="1Yq-7r-cLD" secondAttribute="trailingMargin" id="IxC-9x-C52"/>
+                                        <constraint firstItem="h9A-os-CyZ" firstAttribute="leading" secondItem="1Yq-7r-cLD" secondAttribute="leadingMargin" id="VQh-ll-kyO"/>
+                                        <constraint firstItem="h9A-os-CyZ" firstAttribute="centerY" secondItem="1Yq-7r-cLD" secondAttribute="centerY" id="dPq-3C-wbg"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="urlLabel" destination="h9A-os-CyZ" id="O0R-9R-VrR"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="upd-U6-u8m" id="xS2-iT-Uoa"/>

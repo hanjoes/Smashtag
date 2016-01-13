@@ -13,6 +13,7 @@ class DetailTableViewController: UITableViewController {
     private struct Detail {
         static let MediaReuseIdentifier = "Media"
         static let MentionReuseIdentifier = "Mention"
+        static let URLReuseIdentifier = "URL"
     }
     
     private enum TweetDetail {
@@ -52,7 +53,7 @@ class DetailTableViewController: UITableViewController {
             case .Media(_):
                 return Detail.MediaReuseIdentifier
             case .URLMention(_):
-                return Detail.MentionReuseIdentifier
+                return Detail.URLReuseIdentifier
             case .UserMention(_):
                 return Detail.MentionReuseIdentifier
             case .HashTag(_):
@@ -122,6 +123,9 @@ class DetailTableViewController: UITableViewController {
         }
         else if let imageCell = cell as? ImageTableViewCell {
             imageCell.urlStr = detail.detail
+        }
+        else if let urlCell = cell as? URLTableViewCell {
+            urlCell.urlStr = detail.detail
         }
 
         return cell
