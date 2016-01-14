@@ -46,6 +46,7 @@ class TweetTableViewCell: UITableViewCell {
                     }
                 }
                 for hash in tweet.hashtags {
+                    print("hashtag: \(hash.description)")
                     if let nsrange = hash.nsrange {
                         mutableAttributedString.addAttribute(NSForegroundColorAttributeName,
                             value: UIColor.blueColor(),
