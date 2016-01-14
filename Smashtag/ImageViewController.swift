@@ -9,7 +9,7 @@
 import UIKit
 
 private struct Constants {
-    static let defaultMinimumZoomScale: CGFloat = 1
+    static let defaultMinimumZoomScale: CGFloat = 0.5
     static let defaultMaximumZoomScale: CGFloat = 2.5
 }
 
@@ -57,8 +57,6 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
         var ratio: CGFloat = 1
         if heightRatio >= 1 || widthRatio >= 1 {
             ratio = widthRatio > heightRatio ? widthRatio : heightRatio
-            scrollView.minimumZoomScale = ratio
-            scrollView.maximumZoomScale = ratio * 2.5
         }
         scrollView.setZoomScale(ratio, animated: true)
     }
