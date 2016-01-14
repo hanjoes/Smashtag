@@ -20,28 +20,6 @@ class DetailTableViewController: UITableViewController {
         }
     }
     
-    private var details = [[TweetDetail]]()
-    
-    private func initializeDetails(tweet: Tweet) {
-        //// DO SOMETHING HERE!!!! FOR THE TYPE after each append!!!
-        if tweet.media.count > 0 {
-            details.append(tweet.media.map{ .Media(image: $0) })
-            titleBySectionIndex[details.count-1] = "Media"
-        }
-        if tweet.urls.count > 0 {
-            details.append(tweet.urls.map{ .URLMention(url: $0) })
-            titleBySectionIndex[details.count-1] = "URLs"
-        }
-        if tweet.userMentions.count > 0 {
-            details.append(tweet.userMentions.map{ .UserMention(user: $0) })
-            titleBySectionIndex[details.count-1] = "Users"
-        }
-        if tweet.hashtags.count > 0 {
-            details.append(tweet.hashtags.map{ .HashTag(hashTag: $0) })
-            titleBySectionIndex[details.count-1] = "Hash Tag"
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -84,6 +62,7 @@ class DetailTableViewController: UITableViewController {
             mentionCell.detail = detail
         }
         else if let imageCell = cell as? ImageTableViewCell {
+            self.imageCell = imageCell
             imageCell.imageItem = detail.imageItem
         }
 
@@ -102,6 +81,14 @@ class DetailTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return titleBySectionIndex[section]
+    }
+    
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        if let cell = imageCell {
+            if toInterfaceOrientation.isLandscape {
+                performSegueWithIdentifier(TableViewControllerConstants.ShowImageSegueIdentifier, sender: cell)
+            }
+        }
     }
 
     /*
@@ -168,6 +155,31 @@ class DetailTableViewController: UITableViewController {
     
     
     private var titleBySectionIndex = [Int:String]()
+    
+    private var details = [[TweetDetail]]()
+    
+    private var imageCell: ImageTableViewCell?
+    
+    private func initializeDetails(tweet: Tweet) {
+        //// DO SOMETHING HERE!!!! FOR THE TYPE after each append!!!
+        if tweet.media.count > 0 {
+            details.append(tweet.media.map{ .Media(image: $0) })
+            titleBySectionIndex[details.count-1] = "Media"
+        }
+        if tweet.urls.count > 0 {
+            details.append(tweet.urls.map{ .URLMention(url: $0) })
+            titleBySectionIndex[details.count-1] = "URLs"
+        }
+        if tweet.userMentions.count > 0 {
+            details.append(tweet.userMentions.map{ .UserMention(user: $0) })
+            titleBySectionIndex[details.count-1] = "Users"
+        }
+        if tweet.hashtags.count > 0 {
+            details.append(tweet.hashtags.map{ .HashTag(hashTag: $0) })
+            titleBySectionIndex[details.count-1] = "Hash Tag"
+        }
+    }
+
 }
 
 private struct TableViewControllerConstants {
