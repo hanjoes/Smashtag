@@ -93,16 +93,16 @@
             <objects>
                 <viewController id="hch-zg-4bI" customClass="ImageViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="443-gu-aZD"/>
-                        <viewControllerLayoutGuide type="bottom" id="BEs-hA-5Dg"/>
+                        <viewControllerLayoutGuide type="top" id="mUD-o2-nmk"/>
+                        <viewControllerLayoutGuide type="bottom" id="PMH-pZ-7pa"/>
                     </layoutGuides>
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="SuB-Oh-F7a">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="QeP-pY-0u2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </scrollView>
                     <navigationItem key="navigationItem" id="zhe-l9-oIr"/>
                     <connections>
-                        <outlet property="scrollView" destination="SuB-Oh-F7a" id="iFK-YC-sbq"/>
+                        <outlet property="scrollView" destination="QeP-pY-0u2" id="PsI-zD-W5J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VpC-Uu-zXQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
