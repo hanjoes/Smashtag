@@ -15,7 +15,8 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         didSet {
             if history == nil { history = recent.allHistory }
             if let text = searchText {
-                history!.append(text)
+                history!.insert(text, atIndex: 0)
+                if history?.count > 100 { history?.popLast() }
                 recent.allHistory = history!
             }
             lastSuccessfulRequest = nil
