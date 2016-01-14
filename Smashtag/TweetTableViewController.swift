@@ -116,10 +116,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         
         return cell
     }
-    
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier(Storyboard.ShowSegue, sender: self.tableView(tableView, cellForRowAtIndexPath: indexPath))
-    }
 
     /*
     // Override to support conditional editing of the table view.
