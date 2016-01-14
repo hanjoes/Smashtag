@@ -181,7 +181,7 @@
             </objects>
             <point key="canvasLocation" x="1474" y="970"/>
         </scene>
-        <!--Recents Table View Controller-->
+        <!--Recents-->
         <scene sceneID="IsM-08-Gdt">
             <objects>
                 <tableViewController id="OUi-Fj-DPG" customClass="RecentsTableViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
@@ -191,7 +191,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Recent" textLabel="Qz7-PJ-JWL" style="IBUITableViewCellStyleDefault" id="A0g-ph-AJ4">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A0g-ph-AJ4" id="PzZ-zK-Vpo">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -213,11 +213,11 @@
                             <outlet property="delegate" destination="OUi-Fj-DPG" id="DGN-2Y-UgR"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" systemItem="recents" id="0kO-M0-7YS"/>
+                    <navigationItem key="navigationItem" title="Recents" id="9hl-zc-VZU"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4iS-Ph-VMX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1364" y="-598"/>
+            <point key="canvasLocation" x="2176" y="-598"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Xfr-Qt-hQn">
@@ -249,12 +249,31 @@
                     </tabBar>
                     <connections>
                         <segue destination="HZA-dy-chh" kind="relationship" relationship="viewControllers" id="Ocq-EG-UCb"/>
-                        <segue destination="OUi-Fj-DPG" kind="relationship" relationship="viewControllers" id="bOC-7N-mkB"/>
+                        <segue destination="ifg-dm-XN6" kind="relationship" relationship="viewControllers" id="bOC-7N-mkB"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KOL-Lk-TAD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="552" y="196"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hVt-V5-ESq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ifg-dm-XN6" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="recents" id="0kO-M0-7YS"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GP0-on-jMv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="OUi-Fj-DPG" kind="relationship" relationship="rootViewController" id="Zro-6h-b3d"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cBt-5J-5lI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1364" y="-598"/>
         </scene>
     </scenes>
 </document>

@@ -13,6 +13,11 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     var tweets = [[Tweet]]()
     var searchText: String? = "#USFCA" {
         didSet {
+            if history == nil { history = recent.allHistory }
+            if let text = searchText {
+                history!.append(text)
+                recent.allHistory = history!
+            }
             lastSuccessfulRequest = nil
             searchTextField?.text = searchText
             tweets.removeAll()
@@ -20,6 +25,11 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             refresh()
         }
     }
+    
+    var recent = Recents()
+    
+    private var history: [String]?
+    
 
     // MARK: - View Controller Life Cycle
     
