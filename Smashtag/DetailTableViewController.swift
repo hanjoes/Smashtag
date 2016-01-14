@@ -70,6 +70,9 @@ class DetailTableViewController: UITableViewController {
                 UIApplication.sharedApplication().openURL(url)
             }
         }
+        else if let imageCell = cell as? ImageTableViewCell {
+            performSegueWithIdentifier(TableViewControllerConstants.ShowImageSegueIdentifier, sender: imageCell)
+        }
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -140,10 +143,18 @@ class DetailTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? TweetTableViewController {
+        let destination = segue.destinationViewController
+        if let ttvc = destination as? TweetTableViewController {
             if let cell = sender as? MentionTableViewCell {
                 guard cell.detail!.url == nil else { return }
-                destination.searchText = cell.detail!.detail.keyword
+                ttvc.searchText = cell.detail!.detail.keyword
+            }
+        }
+        else if let ivc = destination as? ImageViewController {
+            if let cell = sender as? ImageTableViewCell {
+                if let image = cell.imageObj {
+                    ivc.image = image
+                }
             }
         }
     }
@@ -158,6 +169,7 @@ class DetailTableViewController: UITableViewController {
 private struct TableViewControllerConstants {
     static let MediaReuseIdentifier = "Media"
     static let MentionReuseIdentifier = "Mention"
+    static let ShowImageSegueIdentifier = "ShowImage"
 }
 
 

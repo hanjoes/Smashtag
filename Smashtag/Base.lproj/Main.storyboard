@@ -88,10 +88,10 @@
             </objects>
             <point key="canvasLocation" x="1474" y="196"/>
         </scene>
-        <!--View Controller-->
+        <!--Image View Controller-->
         <scene sceneID="IMT-k3-D46">
             <objects>
-                <viewController id="hch-zg-4bI" sceneMemberID="viewController">
+                <viewController id="hch-zg-4bI" customClass="ImageViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="443-gu-aZD"/>
                         <viewControllerLayoutGuide type="bottom" id="BEs-hA-5Dg"/>
@@ -100,6 +100,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </scrollView>
+                    <connections>
+                        <outlet property="scrollView" destination="SuB-Oh-F7a" id="H6t-wR-CmU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VpC-Uu-zXQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -163,7 +166,6 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="mediaImage" destination="SmB-fd-XBC" id="8Tu-87-zy7"/>
-                                    <segue destination="hch-zg-4bI" kind="showDetail" id="CIo-gJ-LpJ"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Mention" rowHeight="122" id="psp-Zl-X5G" customClass="MentionTableViewCell" customModule="Smashtag" customModuleProvider="target">
@@ -198,6 +200,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="GNP-EG-vOU"/>
+                    <connections>
+                        <segue destination="hch-zg-4bI" kind="showDetail" identifier="ShowImage" id="I3B-XU-4xw"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cXE-BS-1lk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="1RT-pk-A6r" userLabel="Exit" sceneMemberID="exit"/>
@@ -224,7 +229,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="b2W-au-s7V"/>
+        <segue reference="I3B-XU-4xw"/>
         <segue reference="DWQ-Ve-xaR"/>
     </inferredMetricsTieBreakers>
 </document>

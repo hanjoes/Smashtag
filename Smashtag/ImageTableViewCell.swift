@@ -19,9 +19,12 @@ class ImageTableViewCell: UITableViewCell {
         }
     }
     
+    var imageObj: UIImage?
+    
     private func updateUI() {
         if let imageData = NSData(contentsOfURL: (imageItem?.url)!) {
-            mediaImage?.image = UIImage(data: imageData)
+            imageObj = UIImage(data: imageData)
+            mediaImage?.image = imageObj
         }
     }
 }
