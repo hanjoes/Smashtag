@@ -143,7 +143,11 @@ class DetailTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destination = segue.destinationViewController
+        var destination = segue.destinationViewController
+        if let navCon = destination as? UINavigationController {
+            destination = navCon.visibleViewController!
+        }
+        
         if let ttvc = destination as? TweetTableViewController {
             if let cell = sender as? MentionTableViewCell {
                 guard cell.detail!.url == nil else { return }
