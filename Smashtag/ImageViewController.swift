@@ -8,14 +8,19 @@
 
 import UIKit
 
+private struct Constants {
+    static let defaultMinimumZoomScale: CGFloat = 1
+    static let defaultMaximumZoomScale: CGFloat = 2
+}
+
 class ImageViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet var scrollView: UIScrollView! {
         didSet {
             scrollView.contentSize = imageView.frame.size
             scrollView.delegate = self
-            scrollView.minimumZoomScale = 0.5
-            scrollView.maximumZoomScale = 2
+            scrollView.minimumZoomScale = Constants.defaultMinimumZoomScale
+            scrollView.maximumZoomScale = Constants.defaultMaximumZoomScale
         }
     }
     
@@ -23,9 +28,21 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
     
     var image: UIImage? {
         didSet {
-            imageView.image = image
-            imageView.sizeToFit()
-            scrollView?.contentSize = imageView.frame.size
+            if image != nil {
+                let rectSize = view.bounds.size
+                let heightRatio = rectSize.height / image!.size.height
+                let widthRatio = rectSize.width / image!.size.width
+                var ratio: CGFloat = 1
+                if heightRatio < 1 || widthRatio < 1 {
+                    ratio = widthRatio > heightRatio ? widthRatio : heightRatio
+                }
+
+                let rect = CGRect(origin: view.frame.origin, size: CGSize(width: image!.size.width * ratio, height: image!.size.height * ratio))
+                imageView.image = image
+                imageView.drawRect(rect)
+                imageView.sizeToFit()
+                scrollView?.contentSize = imageView.frame.size
+            }
         }
     }
 
