@@ -42,14 +42,12 @@ class DetailTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = self.tableView(self.tableView, cellForRowAtIndexPath: indexPath)
-        if let urlCell = cell as? MentionTableViewCell {
-            if let url = urlCell.detail!.url {
-                UIApplication.sharedApplication().openURL(url)
-            }
-        }
-        else if let imageCell = cell as? ImageTableViewCell {
+        switch details[indexPath.section][indexPath.row] {
+        case .URLMention(let url):
+            UIApplication.sharedApplication().openURL(NSURL(string: url.keyword)!)
+        case .Media(_):
             performSegueWithIdentifier(TableViewControllerConstants.ShowImageSegueIdentifier, sender: imageCell)
+        default: break
         }
     }
     
@@ -153,7 +151,6 @@ class DetailTableViewController: UITableViewController {
     
     // MARK: - Private
     
-    
     private var titleBySectionIndex = [Int:String]()
     
     private var details = [[TweetDetail]]()
@@ -161,7 +158,6 @@ class DetailTableViewController: UITableViewController {
     private var imageCell: ImageTableViewCell?
     
     private func initializeDetails(tweet: Tweet) {
-        //// DO SOMETHING HERE!!!! FOR THE TYPE after each append!!!
         if tweet.media.count > 0 {
             details.append(tweet.media.map{ .Media(image: $0) })
             titleBySectionIndex[details.count-1] = "Media"

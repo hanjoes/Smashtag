@@ -50,6 +50,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
     private var imageView = UIImageView()
     
     private func autoZoom() {
+        guard image != nil else { return }
         let rectSize = view.bounds.size
         let heightRatio = rectSize.height / image!.size.height
         let widthRatio = rectSize.width / image!.size.width
