@@ -107,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VpC-Uu-zXQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2256" y="970"/>
+            <point key="canvasLocation" x="2286" y="946"/>
         </scene>
         <!--Detail Table View Controller-->
         <scene sceneID="gu0-N7-2bU">
@@ -179,7 +179,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cXE-BS-1lk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="1RT-pk-A6r" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1474" y="970"/>
+            <point key="canvasLocation" x="1364" y="946"/>
         </scene>
         <!--Recents-->
         <scene sceneID="IsM-08-Gdt">
@@ -206,6 +206,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Tjz-Fq-Jmb" kind="show" identifier="ShowHistoryData" id="GGv-r9-5f2"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -217,7 +220,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4iS-Ph-VMX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2176" y="-598"/>
+            <point key="canvasLocation" x="2286" y="-526"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Xfr-Qt-hQn">
@@ -273,7 +276,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cBt-5J-5lI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1364" y="-598"/>
+            <point key="canvasLocation" x="1364" y="-526"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="GGv-r9-5f2"/>
+    </inferredMetricsTieBreakers>
 </document>
