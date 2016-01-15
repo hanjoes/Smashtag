@@ -44,7 +44,7 @@ class DetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch details[indexPath.section][indexPath.row] {
         case .URLMention(let url):
-            UIApplication.sharedApplication().openURL(NSURL(string: url.keyword)!)
+            UIApplication.sharedApplication().openURL(NSURL(string: url)!)
         case .Media(_):
             performSegueWithIdentifier(TableViewControllerConstants.ShowImageSegueIdentifier, sender: imageCell)
         default: break
@@ -54,7 +54,6 @@ class DetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let detail = details[indexPath.section][indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(detail.detail.identifier, forIndexPath: indexPath)
-
         // Configure the cell...
         if let mentionCell = cell as? MentionTableViewCell {
             mentionCell.detail = detail
@@ -163,19 +162,23 @@ class DetailTableViewController: UITableViewController {
             titleBySectionIndex[details.count-1] = "Media"
         }
         if tweet.urls.count > 0 {
-            details.append(tweet.urls.map{ .URLMention(url: $0) })
+            details.append(tweet.urls.map{ .URLMention(url: $0.keyword) })
             titleBySectionIndex[details.count-1] = "URLs"
         }
+        
+        // dealing with the user who posted the tweet.
+        let user = tweet.user
+        details.append([.UserMention(user: "@\(user.screenName)")])
+        titleBySectionIndex[details.count-1] = "Users"
         if tweet.userMentions.count > 0 {
-            details.append(tweet.userMentions.map{ .UserMention(user: $0) })
-            titleBySectionIndex[details.count-1] = "Users"
+            details[details.count-1] += tweet.userMentions.map{ .UserMention(user: $0.keyword) }
         }
+        
         if tweet.hashtags.count > 0 {
-            details.append(tweet.hashtags.map{ .HashTag(hashTag: $0) })
+            details.append(tweet.hashtags.map{ .HashTag(hashTag: $0.keyword) })
             titleBySectionIndex[details.count-1] = "Hash Tag"
         }
     }
-
 }
 
 private struct TableViewControllerConstants {
@@ -187,9 +190,9 @@ private struct TableViewControllerConstants {
 
 enum TweetDetail {
     case Media(image: MediaItem)
-    case URLMention(url: Tweet.IndexedKeyword)
-    case UserMention(user: Tweet.IndexedKeyword)
-    case HashTag(hashTag: Tweet.IndexedKeyword)
+    case URLMention(url: String)
+    case UserMention(user: String)
+    case HashTag(hashTag: String)
     
     var height: CGFloat {
         return UITableViewAutomaticDimension
@@ -207,7 +210,7 @@ enum TweetDetail {
     var url: NSURL? {
         switch self {
         case .URLMention(let urlKeyword):
-            return NSURL(string: urlKeyword.keyword)
+            return NSURL(string: urlKeyword)
         default:
             return nil
         }
@@ -218,11 +221,11 @@ enum TweetDetail {
         case .Media(_):
             return (nil, TableViewControllerConstants.MediaReuseIdentifier)
         case .URLMention(let url):
-            return (url.keyword, TableViewControllerConstants.MentionReuseIdentifier)
+            return (url, TableViewControllerConstants.MentionReuseIdentifier)
         case .UserMention(let user):
-            return (user.keyword, TableViewControllerConstants.MentionReuseIdentifier)
+            return (user, TableViewControllerConstants.MentionReuseIdentifier)
         case .HashTag(let hashTag):
-            return (hashTag.keyword, TableViewControllerConstants.MentionReuseIdentifier)
+            return (hashTag, TableViewControllerConstants.MentionReuseIdentifier)
         }
     }
 }
