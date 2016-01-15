@@ -10,55 +10,8 @@ import UIKit
 
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
-    var tweets = [[Tweet]]()
-    var searchText: String? = "#USFCA" {
-        didSet {
-            if history == nil { history = recent.allHistory }
-            if let text = searchText {
-                history!.insert(text, atIndex: 0)
-                if history?.count > 100 { history?.popLast() }
-                recent.allHistory = history!
-            }
-            lastSuccessfulRequest = nil
-            searchTextField?.text = searchText
-            tweets.removeAll()
-            tableView.reloadData()
-            refresh()
-        }
-    }
-    
-    var recent = Recents()
-    
-    private var history: [String]?
-    
-
-    // MARK: - View Controller Life Cycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.estimatedRowHeight = tableView.rowHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
+    @IBAction func goBack(segue: UIStoryboardSegue) {
         refresh()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-    
-    var lastSuccessfulRequest: TwitterRequest?
-    var nextRequestToAttempt: TwitterRequest? {
-        if lastSuccessfulRequest == nil {
-            if searchText != nil {
-                return TwitterRequest(search: searchText!, count: 100)
-            }
-            else {
-                return nil
-            }
-        } else {
-            return lastSuccessfulRequest!.requestForNewer
-        }
     }
     
     @IBAction func refresh(sender: UIRefreshControl?) {
@@ -82,18 +35,50 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    func refresh() {
-        if refreshControl != nil {
-            refreshControl?.beginRefreshing()
-        }
-        refresh(refreshControl)
-    }
-
     @IBOutlet weak var searchTextField: UITextField! {
         didSet {
             searchTextField.delegate = self
             searchTextField.text = searchText
         }
+    }
+    
+    var tweets = [[Tweet]]()
+    var searchText: String? = "#USFCA" {
+        didSet {
+            if history == nil { history = recent.allHistory }
+            if let text = searchText {
+                history!.insert(text, atIndex: 0)
+                if history?.count > 100 { history?.popLast() }
+                recent.allHistory = history!
+            }
+            lastSuccessfulRequest = nil
+            searchTextField?.text = searchText
+            tweets.removeAll()
+            tableView.reloadData()
+            refresh()
+        }
+    }
+    
+    var recent = Recents()
+    var lastSuccessfulRequest: TwitterRequest?
+    var nextRequestToAttempt: TwitterRequest? {
+        if lastSuccessfulRequest == nil {
+            if searchText != nil {
+                return TwitterRequest(search: searchText!, count: 100)
+            }
+            else {
+                return nil
+            }
+        } else {
+            return lastSuccessfulRequest!.requestForNewer
+        }
+    }
+    
+    func refresh() {
+        if refreshControl != nil {
+            refreshControl?.beginRefreshing()
+        }
+        refresh(refreshControl)
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -103,6 +88,21 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             searchText = textField.text
         }
         return true
+    }
+
+    // MARK: - View Controller Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
+        refresh()
+        
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     // MARK: - UITableViewDataDSource
@@ -115,11 +115,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         return tweets[section].count
     }
 
-    private struct Storyboard {
-        static let CellReuseIdentifier = "Tweet"
-        static let ShowSegue = "Show"
-    }
-    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.CellReuseIdentifier, forIndexPath: indexPath) as! TweetTableViewCell
 
@@ -181,8 +176,11 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             }
         }
     }
-
-    @IBAction func goBack(segue: UIStoryboardSegue) {
-        refresh()
+    
+    // MARK: - Private
+    private var history: [String]?
+    private struct Storyboard {
+        static let CellReuseIdentifier = "Tweet"
+        static let ShowSegue = "Show"
     }
 }

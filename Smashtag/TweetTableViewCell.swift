@@ -9,17 +9,15 @@
 import UIKit
 
 class TweetTableViewCell: UITableViewCell {
+    @IBOutlet weak var tweetProfileImageView: UIImageView!
+    @IBOutlet weak var tweetScreenNameLabel: UILabel!
+    @IBOutlet weak var tweetTextLabel: UILabel!
     
     var tweet: Tweet? {
         didSet {
             updateUI()
         }
     }
-
-    @IBOutlet weak var tweetProfileImageView: UIImageView!
-    @IBOutlet weak var tweetScreenNameLabel: UILabel!
-    @IBOutlet weak var tweetTextLabel: UILabel!
-    
     
     func updateUI() {
         // reset any existing tweet information
