@@ -10,7 +10,7 @@ import UIKit
 
 class ImageCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    var imageURLs = [NSURL]()
+    var tweets = [Tweet]()
 
     // MARK: - Lifecycle
     
@@ -29,7 +29,10 @@ class ImageCollectionViewController: UICollectionViewController, UICollectionVie
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath)
         
         if let ic = cell as? ImageCollectionViewCell {
-            ic.imageURL = imageURLs[indexPath.row]
+            let tweet = tweets[indexPath.row]
+            if tweet.media.count > 0 {
+                ic.imageURL = tweet.media[0].url
+            }
         }
         
         return cell
@@ -42,7 +45,7 @@ class ImageCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageURLs.count
+        return tweets.count
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
@@ -55,6 +58,7 @@ class ImageCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     // MARK: - Private
+    
     private struct Constants {
         static let ItemHeight: CGFloat = 150
     }
