@@ -13,8 +13,13 @@ class Recents {
     let defaults = NSUserDefaults.standardUserDefaults()
     
     var allHistory: [String] {
-        get { return defaults.objectForKey(Constants.NSUserDefaultKey) as? [String] ?? [] }
-        set { defaults.setObject(newValue, forKey: Constants.NSUserDefaultKey) }
+        get {
+            return defaults.objectForKey(Constants.NSUserDefaultKey) as? [String] ?? []
+        }
+        set {
+            let orderedSet = NSOrderedSet(array: newValue)
+            defaults.setObject(orderedSet.array, forKey: Constants.NSUserDefaultKey)
+        }
     }
     
     func removeAtIndex(index: Int) {
