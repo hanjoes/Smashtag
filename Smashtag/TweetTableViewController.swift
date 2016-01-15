@@ -24,6 +24,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
                             self.lastSuccessfulRequest = request
                             self.tweets.insert(newTweets, atIndex: 0)
                             self.tableView.reloadData()
+                            self.title = self.searchText!
                         }
                         sender?.endRefreshing()
                     }
@@ -97,12 +98,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         refresh()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     // MARK: - UITableViewDataDSource
@@ -174,6 +169,11 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
                 dtc.tweet = cell.tweet
                 dtc.title = "Tweet"
             }
+        }
+        else if let icvc = destination as? ImageCollectionViewController {
+            icvc.imageURLs = tweets[0].filter({ (t) -> Bool in
+                t.media.count > 0
+            }).map({ (t) -> NSURL in t.media[0].url })
         }
     }
     

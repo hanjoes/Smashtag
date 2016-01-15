@@ -12,6 +12,8 @@
 		DB03D48A1C4751FB000389D1 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB03D4891C4751FB000389D1 /* ImageViewController.swift */; };
 		DB2A25E71C479E9A0006AA97 /* RecentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A25E61C479E9A0006AA97 /* RecentsTableViewController.swift */; };
 		DB2A25E91C479F380006AA97 /* Recents.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A25E81C479F380006AA97 /* Recents.swift */; };
+		DB2A25ED1C48D8080006AA97 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A25EC1C48D8080006AA97 /* ImageCollectionViewCell.swift */; };
+		DB2A25EF1C48D82B0006AA97 /* ImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2A25EE1C48D82B0006AA97 /* ImageCollectionViewController.swift */; };
 		DBDAE23D1C3B74C50097BEB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBDAE23C1C3B74C50097BEB7 /* AppDelegate.swift */; };
 		DBDAE2421C3B74C50097BEB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBDAE2401C3B74C50097BEB7 /* Main.storyboard */; };
 		DBDAE2441C3B74C50097BEB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBDAE2431C3B74C50097BEB7 /* Assets.xcassets */; };
@@ -50,6 +52,8 @@
 		DB03D4891C4751FB000389D1 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		DB2A25E61C479E9A0006AA97 /* RecentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentsTableViewController.swift; path = ../RecentsTableViewController.swift; sourceTree = "<group>"; };
 		DB2A25E81C479F380006AA97 /* Recents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recents.swift; sourceTree = "<group>"; };
+		DB2A25EC1C48D8080006AA97 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		DB2A25EE1C48D82B0006AA97 /* ImageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewController.swift; sourceTree = "<group>"; };
 		DBDAE2391C3B74C50097BEB7 /* Smashtag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smashtag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBDAE23C1C3B74C50097BEB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBDAE2411C3B74C50097BEB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -130,6 +134,8 @@
 				DB03D4831C461EDE000389D1 /* MentionTableViewCell.swift */,
 				DB03D4851C461FEB000389D1 /* ImageTableViewCell.swift */,
 				DB2A25E81C479F380006AA97 /* Recents.swift */,
+				DB2A25EC1C48D8080006AA97 /* ImageCollectionViewCell.swift */,
+				DB2A25EE1C48D82B0006AA97 /* ImageCollectionViewController.swift */,
 			);
 			path = Smashtag;
 			sourceTree = "<group>";
@@ -308,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB2A25EF1C48D82B0006AA97 /* ImageCollectionViewController.swift in Sources */,
 				DBDAE23D1C3B74C50097BEB7 /* AppDelegate.swift in Sources */,
 				DB2A25E91C479F380006AA97 /* Recents.swift in Sources */,
 				DBDAE2741C3B76050097BEB7 /* TwitterRequest.swift in Sources */,
@@ -318,6 +325,7 @@
 				DBDAE2721C3B76050097BEB7 /* MediaItem.swift in Sources */,
 				DB03D4861C461FEB000389D1 /* ImageTableViewCell.swift in Sources */,
 				DB2A25E71C479E9A0006AA97 /* RecentsTableViewController.swift in Sources */,
+				DB2A25ED1C48D8080006AA97 /* ImageCollectionViewCell.swift in Sources */,
 				DBDAE2731C3B76050097BEB7 /* Tweet.swift in Sources */,
 				DB03D48A1C4751FB000389D1 /* ImageViewController.swift in Sources */,
 				DBDAE2771C3B86090097BEB7 /* TweetTableViewCell.swift in Sources */,
