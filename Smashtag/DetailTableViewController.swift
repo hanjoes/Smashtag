@@ -79,10 +79,10 @@ class DetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return titleBySectionIndex[section]
     }
-    
-    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        tableView.reloadData()
         if let cell = imageCell {
-            if toInterfaceOrientation.isLandscape {
+            if fromInterfaceOrientation.isPortrait {
                 performSegueWithIdentifier(TableViewControllerConstants.ShowImageSegueIdentifier, sender: cell)
             }
         }

@@ -171,7 +171,9 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             }
         }
         else if let icvc = destination as? ImageCollectionViewController {
-            icvc.tweets = tweets[0].filter({(t) -> Bool in t.media.count > 0})
+            if tweets.count > 0 && tweets[0].count > 0 {
+                icvc.tweets = tweets[0].filter({(t) -> Bool in t.media.count > 0})
+            }
         }
     }
     

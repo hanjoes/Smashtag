@@ -10,7 +10,7 @@ import UIKit
 
 private struct Constants {
     static let defaultMinimumZoomScale: CGFloat = 0.5
-    static let defaultMaximumZoomScale: CGFloat = 2.5
+    static let defaultMaximumZoomScale: CGFloat = 3
 }
 
 class ImageViewController: UIViewController, UIScrollViewDelegate {
@@ -32,7 +32,6 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
                 imageView.image = image
                 imageView.sizeToFit()
                 scrollView?.contentSize = imageView.frame.size
-                
                 autoZoom()
             }
         }
@@ -53,15 +52,17 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
     
     private func autoZoom() {
         guard image != nil else { return }
-        let rectSize = view.bounds.size
+
+        let rectSize = view.frame.size
         let heightRatio = rectSize.height / image!.size.height
         let widthRatio = rectSize.width / image!.size.width
-        
+        print("rectSize: \(rectSize)")
+        print("imageSize: \(image!.size)")
         var ratio: CGFloat = 1
         if heightRatio >= 1 || widthRatio >= 1 {
             ratio = widthRatio > heightRatio ? widthRatio : heightRatio
         }
-        scrollView.setZoomScale(ratio, animated: true)
+        scrollView?.zoomScale = ratio
     }
     
 

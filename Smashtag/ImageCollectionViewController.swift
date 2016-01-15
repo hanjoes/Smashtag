@@ -48,6 +48,10 @@ class ImageCollectionViewController: UICollectionViewController, UICollectionVie
         return tweets.count
     }
     
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier(Constants.ShowDetailSegue, sender: nil)
+    }
+    
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -57,9 +61,22 @@ class ImageCollectionViewController: UICollectionViewController, UICollectionVie
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destination = segue.destinationViewController
+        if let dtvc = destination as? DetailTableViewController {
+            if let indexPaths = collectionView?.indexPathsForSelectedItems() {
+                let indexPath = indexPaths[0]
+                dtvc.tweet = tweets[indexPath.row]
+            }
+        }
+    }
+    
     // MARK: - Private
     
     private struct Constants {
         static let ItemHeight: CGFloat = 150
+        static let ShowDetailSegue = "ShowDetailFromCollection"
     }
 }

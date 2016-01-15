@@ -145,6 +145,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="lTl-A1-Krf"/>
+                    <connections>
+                        <segue destination="upd-U6-u8m" kind="show" identifier="ShowDetailFromCollection" id="MaX-hC-1OL"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jsb-PI-N6x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -349,5 +352,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="GGv-r9-5f2"/>
+        <segue reference="MaX-hC-1OL"/>
     </inferredMetricsTieBreakers>
 </document>
