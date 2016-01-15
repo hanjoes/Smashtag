@@ -43,6 +43,18 @@ class RecentsTableViewController: UITableViewController {
 
         return cell
     }
+    
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.Delete
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            recents.removeAtIndex(indexPath.row)
+            tableView.reloadData()
+        }
+    }
+
 
     /*
     // Override to support conditional editing of the table view.

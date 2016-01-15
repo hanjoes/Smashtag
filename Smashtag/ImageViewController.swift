@@ -56,8 +56,6 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
         let rectSize = view.frame.size
         let heightRatio = rectSize.height / image!.size.height
         let widthRatio = rectSize.width / image!.size.width
-        print("rectSize: \(rectSize)")
-        print("imageSize: \(image!.size)")
         var ratio: CGFloat = 1
         if heightRatio >= 1 || widthRatio >= 1 {
             ratio = widthRatio > heightRatio ? widthRatio : heightRatio

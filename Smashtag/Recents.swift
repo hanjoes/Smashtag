@@ -17,6 +17,12 @@ class Recents {
         set { defaults.setObject(newValue, forKey: Constants.NSUserDefaultKey) }
     }
     
+    func removeAtIndex(index: Int) {
+        var history = allHistory
+        history.removeAtIndex(index)
+        allHistory = history
+    }
+    
     private struct Constants {
         static let NSUserDefaultKey = "SmashTagRecentsNSUserDefaultKey"
     }
