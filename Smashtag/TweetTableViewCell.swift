@@ -32,37 +32,23 @@ class TweetTableViewCell: UITableViewCell {
         if let tweet = self.tweet {
             tweetTextLabel?.text = tweet.text
             if tweetTextLabel?.text != nil {
-                
                 // highlight mentions
-                let mutableAttributedString = NSMutableAttributedString(string: tweetTextLabel.text!)
-                for url in tweet.urls {
-                    if let nsrange = url.nsrange {
-                        mutableAttributedString.addAttribute(NSForegroundColorAttributeName,
-                            value: UIColor.blueColor(),
-                            range: nsrange)
-                        mutableAttributedString.addAttribute(NSUnderlineStyleAttributeName,
-                            value: NSUnderlineStyle.StyleSingle.rawValue,
-                            range: nsrange)
-                    }
-                }
-                for hash in tweet.hashtags {
-                    print("hashtag: \(hash.description)")
-                    if let nsrange = hash.nsrange {
-                        mutableAttributedString.addAttribute(NSForegroundColorAttributeName,
-                            value: UIColor.blueColor(),
-                            range: nsrange)
-                        mutableAttributedString.addAttribute(NSFontAttributeName,
-                            value: UIFont.boldSystemFontOfSize(tweetTextLabel.font.pointSize),
-                            range: nsrange)
-                    }
-                }
-                for mention in tweet.userMentions {
-                    if let nsrange = mention.nsrange {
-                        mutableAttributedString.addAttribute(NSForegroundColorAttributeName,
-                            value: UIColor.blueColor(),
-                            range: nsrange)
-                    }
-                }
+                let mutableAttributedString = NSMutableAttributedString(attributedString: tweetTextLabel.attributedText!)
+                
+                let attributesForUrl = [NSForegroundColorAttributeName: UIColor.darkGrayColor(),
+                    NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
+                let _ = tweet.urls.map({ (kw) -> Void in
+                    mutableAttributedString.addAttributes(attributesForUrl, range: kw.nsrange!)
+                })
+                let attributesForHashTags = [NSForegroundColorAttributeName: UIColor.blueColor(),
+                    NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
+                let _ = tweet.hashtags.map({ (kw) -> Void in
+                    mutableAttributedString.addAttributes(attributesForHashTags, range: kw.nsrange!)
+                })
+                let attributesForMentions = [NSForegroundColorAttributeName: UIColor.orangeColor()]
+                let _ = tweet.userMentions.map({ (kw) -> Void in
+                    mutableAttributedString.addAttributes(attributesForMentions, range: kw.nsrange!)
+                })
                 tweetTextLabel.attributedText = mutableAttributedString
                 
                 for _ in tweet.media {
