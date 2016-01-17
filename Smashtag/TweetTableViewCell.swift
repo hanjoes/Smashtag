@@ -12,6 +12,7 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var tweetProfileImageView: UIImageView!
     @IBOutlet weak var tweetScreenNameLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: UILabel!
+    @IBOutlet weak var tweetTimeLabel: UILabel!
     
     var tweet: Tweet? {
         didSet {
@@ -63,14 +64,14 @@ class TweetTableViewCell: UITableViewCell {
                 }
             }
             
-//            let formatter = NSDateFormatter()
-//            if NSDate().timeIntervalSinceDate(tweet.created) > 24*60*60 {
-//                formatter.dateStyle = NSDateFormatterStyle.ShortStyle
-//            }
-//            else {
-//                formatter.timeStyle = NSDateFormatterStyle.ShortStyle
-//            }
-//            tweetCreatedLabel?.text = formatter.stringFromDate(tweet.created)
+            let formatter = NSDateFormatter()
+            if NSDate().timeIntervalSinceDate(tweet.created) > 24*60*60 {
+                formatter.dateStyle = NSDateFormatterStyle.ShortStyle
+            }
+            else {
+                formatter.timeStyle = NSDateFormatterStyle.ShortStyle
+            }
+            tweetTimeLabel?.text = formatter.stringFromDate(tweet.created)
         }
     }
 }

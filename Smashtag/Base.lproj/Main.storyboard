@@ -48,6 +48,12 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VL1-2Y-EsE">
+                                            <rect key="frame" x="11" y="64" width="48" height="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="leadingMargin" secondItem="gko-O1-its" secondAttribute="leading" id="26T-zl-CNU"/>
@@ -55,7 +61,10 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="7Bf-9n-6ka" secondAttribute="trailing" id="5jO-7y-gka"/>
                                         <constraint firstAttribute="topMargin" secondItem="gko-O1-its" secondAttribute="top" id="IuJ-Jk-eU0"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="yRx-KU-eeX" secondAttribute="bottom" id="Jlp-y8-xjR"/>
+                                        <constraint firstItem="VL1-2Y-EsE" firstAttribute="top" secondItem="gko-O1-its" secondAttribute="bottom" constant="8" id="PL5-eT-d8g"/>
                                         <constraint firstItem="yRx-KU-eeX" firstAttribute="leading" secondItem="7Bf-9n-6ka" secondAttribute="leading" id="Qx6-LL-ISw"/>
+                                        <constraint firstItem="VL1-2Y-EsE" firstAttribute="leading" secondItem="uH6-r2-ath" secondAttribute="leadingMargin" constant="3" id="US0-5W-NEI"/>
+                                        <constraint firstItem="yRx-KU-eeX" firstAttribute="leading" secondItem="VL1-2Y-EsE" secondAttribute="trailing" constant="5" id="Xx8-ge-lFQ"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="yRx-KU-eeX" secondAttribute="trailing" id="b9j-JF-z4p"/>
                                         <constraint firstItem="7Bf-9n-6ka" firstAttribute="leading" secondItem="gko-O1-its" secondAttribute="trailing" constant="8" id="jwX-mp-zzI"/>
                                         <constraint firstItem="yRx-KU-eeX" firstAttribute="top" secondItem="7Bf-9n-6ka" secondAttribute="bottom" constant="8" id="uXC-Zn-K5W"/>
@@ -65,6 +74,7 @@
                                     <outlet property="tweetProfileImageView" destination="gko-O1-its" id="yy7-Oj-3eo"/>
                                     <outlet property="tweetScreenNameLabel" destination="7Bf-9n-6ka" id="LoV-Vz-m68"/>
                                     <outlet property="tweetTextLabel" destination="yRx-KU-eeX" id="aAH-i0-YEi"/>
+                                    <outlet property="tweetTimeLabel" destination="VL1-2Y-EsE" id="nUa-om-6sa"/>
                                     <segue destination="upd-U6-u8m" kind="show" identifier="Show" id="DWQ-Ve-xaR"/>
                                 </connections>
                             </tableViewCell>
@@ -420,7 +430,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="DWQ-Ve-xaR"/>
         <segue reference="GGv-r9-5f2"/>
-        <segue reference="MaX-hC-1OL"/>
     </inferredMetricsTieBreakers>
 </document>
