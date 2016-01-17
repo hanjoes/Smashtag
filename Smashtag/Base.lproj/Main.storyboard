@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Tweet Table View Controller-->
@@ -174,6 +175,73 @@
             </objects>
             <point key="canvasLocation" x="3766" y="196"/>
         </scene>
+        <!--WebUI View Controller-->
+        <scene sceneID="tR4-EU-GjE">
+            <objects>
+                <viewController id="laC-mF-wZG" customClass="WebUIViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jx1-J7-QQw"/>
+                        <viewControllerLayoutGuide type="bottom" id="fdn-Ke-dMc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8gw-hI-dz8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZCX-nQ-ANn">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="7IW-7L-GZc"/>
+                                    <constraint firstAttribute="height" constant="487" id="Oq1-MW-zMN"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7IW-7L-GZc"/>
+                                        <exclude reference="Oq1-MW-zMN"/>
+                                    </mask>
+                                </variation>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZCX-nQ-ANn" firstAttribute="top" secondItem="Jx1-J7-QQw" secondAttribute="bottom" constant="-64" id="5db-cb-koQ"/>
+                            <constraint firstItem="fdn-Ke-dMc" firstAttribute="top" secondItem="ZCX-nQ-ANn" secondAttribute="bottom" constant="-64" id="Wm0-Z3-RM0"/>
+                            <constraint firstItem="ZCX-nQ-ANn" firstAttribute="leading" secondItem="8gw-hI-dz8" secondAttribute="leadingMargin" constant="-20" id="YV7-gO-1Co"/>
+                            <constraint firstItem="fdn-Ke-dMc" firstAttribute="top" secondItem="ZCX-nQ-ANn" secondAttribute="bottom" constant="-44" id="fKR-zi-YCw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZCX-nQ-ANn" secondAttribute="trailing" constant="-20" id="up6-v2-Jnf"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Wm0-Z3-RM0"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="xFW-0J-7c9">
+                        <rightBarButtonItems>
+                            <barButtonItem title="→" id="DRP-XH-gK3">
+                                <connections>
+                                    <action selector="goForward:" destination="laC-mF-wZG" id="2nF-m7-c4o"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="←" id="Y1F-58-nPu">
+                                <connections>
+                                    <action selector="goBack:" destination="laC-mF-wZG" id="29S-4K-Tcl"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="goBackButton" destination="Y1F-58-nPu" id="ttd-F7-0ln"/>
+                        <outlet property="goForwardButton" destination="DRP-XH-gK3" id="Lu4-JB-2hg"/>
+                        <outlet property="webView" destination="ZCX-nQ-ANn" id="D2M-f4-kcL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a1G-Ij-zEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2980" y="-526"/>
+        </scene>
         <!--Detail Table View Controller-->
         <scene sceneID="gu0-N7-2bU">
             <objects>
@@ -245,6 +313,7 @@
                     <navigationItem key="navigationItem" id="GNP-EG-vOU"/>
                     <connections>
                         <segue destination="hch-zg-4bI" kind="show" identifier="ShowImage" id="HQx-Gx-mGT"/>
+                        <segue destination="laC-mF-wZG" kind="show" identifier="ShowWebPage" id="7e1-DD-77g"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cXE-BS-1lk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -272,7 +341,7 @@
                                             <rect key="frame" x="15" y="0.0" width="550" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>

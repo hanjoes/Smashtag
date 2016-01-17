@@ -43,8 +43,8 @@ class DetailTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch details[indexPath.section][indexPath.row] {
-        case .URLMention(let url):
-            UIApplication.sharedApplication().openURL(NSURL(string: url)!)
+        case .URLMention(_):
+            performSegueWithIdentifier(TableViewControllerConstants.ShowWebPageSegueIdentifier, sender: tableView.cellForRowAtIndexPath(indexPath))
         case .Media(_):
             performSegueWithIdentifier(TableViewControllerConstants.ShowImageSegueIdentifier, sender: imageCell)
         default: break
@@ -145,6 +145,11 @@ class DetailTableViewController: UITableViewController {
                 }
             }
         }
+        else if let wvc = destination as? WebUIViewController {
+            if let cell = sender as? MentionTableViewCell {
+                wvc.url = cell.detail?.url
+            }
+        }
     }
     
     
@@ -185,6 +190,7 @@ private struct TableViewControllerConstants {
     static let MediaReuseIdentifier = "Media"
     static let MentionReuseIdentifier = "Mention"
     static let ShowImageSegueIdentifier = "ShowImage"
+    static let ShowWebPageSegueIdentifier = "ShowWebPage"
 }
 
 
